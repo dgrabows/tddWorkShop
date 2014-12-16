@@ -1,29 +1,22 @@
-import java.util.Random;
-
 public class SomeClass {
 
-    Random random = new Random();
-    String myRandomFlag = "";    
+    String myRandomFlag = "";
+
+    private ProteinSelector proteinSelector;
+
+    public SomeClass(ProteinSelector proteinSelector) {
+        this.proteinSelector = proteinSelector;
+    }
 
     public String someMethod() {
 
-        if ((this.thingOne() || (!this.thingOne() && this.thingTwo())) && this.thingThree()) {
+        if (proteinSelector.shouldChooseBacon()) {
             myRandomFlag = "Bacon";
         } else {
             myRandomFlag = "Tofu";
         }
         
         return myRandomFlag;
-    }
-
-    public boolean thingOne() {
-        return random.nextBoolean();
-    }
-    public boolean thingTwo() {
-    	return random.nextBoolean();
-    }
-    public boolean thingThree() {
-    	return random.nextBoolean();
     }
 
 }
