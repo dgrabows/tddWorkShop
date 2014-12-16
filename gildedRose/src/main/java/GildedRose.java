@@ -29,7 +29,11 @@ public class GildedRose {
         for (int i = 0; i < items.size(); i++) {
             final Item item = items.get(i);
 
-            if ((!"Aged Brie".equals(item.getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) && item.getQuality() > 0 && !"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
+            if ("Sulfuras, Hand of Ragnaros".equals(item.getName())) {
+                break;
+            }
+
+            if ((!"Aged Brie".equals(item.getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) && item.getQuality() > 0) {
                 item.setQuality(item.getQuality() - 1);
             } else if ("Aged Brie".equals(item.getName()) && item.getQuality() < 50) {
                 item.setQuality(item.getQuality() + 1);
@@ -51,7 +55,7 @@ public class GildedRose {
             decrementSellIn(item);
 
             if (item.getSellIn() < 0) {
-                if (!"Aged Brie".equals(item.getName()) && !"Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) && item.getQuality() > 0 && !"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
+                if (!"Aged Brie".equals(item.getName()) && !"Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) && item.getQuality() > 0) {
                     item.setQuality(item.getQuality() - 1);
                 } else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                     item.setQuality(0);
@@ -63,9 +67,7 @@ public class GildedRose {
     }
 
     private static void decrementSellIn(Item item) {
-        if (!"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
-            item.setSellIn(item.getSellIn() - 1);
-        }
+        item.setSellIn(item.getSellIn() - 1);
     }
 
     public static List<Item> getItems() {
